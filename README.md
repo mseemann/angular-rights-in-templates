@@ -25,3 +25,15 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+### add husky prettier
+- yarn add -D husky lint-staged prettier
+- "prettier:fix": "prettier --write"
+- "lint-staged": {
+   "src/*.{ts,tsx,html,scss}": [
+   "yarn prettier:fix"
+   ]
+   }
+- npx husky install
+- npx husky add .husky/pre-commit "yarn lint-staged"
