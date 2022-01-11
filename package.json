@@ -41,7 +41,7 @@
     "typescript": "~4.5.2"
   },
   "lint-staged": {
-    "src/*.{ts,tsx,html,scss}": [
+    "src/**/*.{ts,tsx,html,scss}": [
       "yarn prettier:fix"
     ]
   }
