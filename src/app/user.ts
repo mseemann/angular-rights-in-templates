@@ -1,10 +1,14 @@
 import { Privilege } from './privilege';
 
 export class User {
-  constructor(private privileges: Privilege[], private admin: boolean) {}
+  constructor(private privileges: Privilege[], public admin: boolean) {}
 
   setAdmin(admin: boolean) {
     this.admin = admin;
+  }
+
+  getPrivileges() {
+    return this.privileges;
   }
 
   setPrivileges(privileges: Privilege[]) {

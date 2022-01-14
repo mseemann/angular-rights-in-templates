@@ -7,7 +7,7 @@
 <h1>Structural Directive Approach</h1>
 
 <div>
-  Is Admin: {{ user.isAdmin() }}, Privileges: {{ user.privileges | json }}
+  Is Admin: {{ user.isAdmin() }}, Privileges: {{ user.getPrivileges() | json }}
 </div>
 
 <div *appHasPrivileges="['VIEW_OVERVIEW']">user can see the overview</div>
@@ -47,3 +47,11 @@
 </div>
 
 <h1>Improved Structural Directive Approach</h1>
+
+<div *appHasPrivilegesWithStore="['VIEW_OVERVIEW']; orIsAdmin: true">
+  user can see the overview
+</div>
+
+<div>
+  <button (click)="changeAdmin()">Change Admin State</button>
+</div>
