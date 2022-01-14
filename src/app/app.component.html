@@ -1,4 +1,14 @@
-<div>{{ user.isAdmin() }}</div>
+<h1>Simple Approach</h1>
+
+<div *ngIf="user.hasOneOfPrivilege(['VIEW_OVERVIEW'])">
+  user can see the overview
+</div>
+
+<h1>Structural Directive Approach</h1>
+
+<div>
+  Is Admin: {{ user.isAdmin() }}, Privileges: {{ user.privileges | json }}
+</div>
 
 <div *appHasPrivileges="['VIEW_OVERVIEW']">user can see the overview</div>
 
@@ -27,10 +37,13 @@
   user can do nothing but is admin
 </div>
 
-<ng-template [appHasPrivileges]="[]" [appHasPrivilegesOrIsAdmin]="true">
+<ng-template [appHasPrivileges] [appHasPrivilegesOrIsAdmin]="true">
   <div>user can do nothing but is admin</div>
 </ng-template>
 
 <div>
-  <input type="checkbox" [(ngModel)]="user.admin" />
+  <label for="isAdmin">Is Admin?</label>
+  <input id="isAdmin" type="checkbox" [(ngModel)]="user.admin" />
 </div>
+
+<h1>Improved Structural Directive Approach</h1>
