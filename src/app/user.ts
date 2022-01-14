@@ -1,11 +1,11 @@
 import { Privilege } from './privilege';
 
 export class User {
-  constructor(private privileges: Privilege[], private admin = false) {}
+  constructor(public privileges: Privilege[], public admin = false) {}
 
   hasOneOfPrivilege(privilegesToCheck: Privilege[]) {
     return (
-      this.privileges.filter((value) => privilegesToCheck.includes(value))
+      privilegesToCheck.filter((value) => this.privileges.includes(value))
         .length > 0
     );
   }

@@ -1,21 +1,36 @@
+<div>{{ user.isAdmin() }}</div>
+
+<div *appHasPrivileges="['VIEW_OVERVIEW']">user can see the overview</div>
+
+<div *appHasPrivileges="['VIEW_DETAILS']">user can see the details</div>
+
+<div *appHasPrivileges="['VIEW_DETAILS', 'VIEW_OVERVIEW', 'DO_COOL_STUFF']">
+  user can nearly do anything
+</div>
+
+<div *appHasPrivileges="['VIEW_OVERVIEW']; orIsAdmin: true">
+  user can see the overview or is admin
+</div>
+
+<div *appHasPrivileges="['VIEW_OVERVIEW', 'VIEW_DETAILS']; orIsAdmin: true">
+  user can see the details or is admin
+</div>
+
+<ng-template
+  [appHasPrivileges]="['VIEW_OVERVIEW', 'VIEW_DETAILS']"
+  [appHasPrivilegesOrIsAdmin]="true"
+>
+  <div>user can see the details or is admin</div>
+</ng-template>
+
+<div *appHasPrivileges="[]; orIsAdmin: true">
+  user can do nothing but is admin
+</div>
+
+<ng-template [appHasPrivileges]="[]" [appHasPrivilegesOrIsAdmin]="true">
+  <div>user can do nothing but is admin</div>
+</ng-template>
+
 <div>
-  <div *appHasPrivileges="['VIEW_OVERVIEW']">user can see the overview</div>
-
-  <div *appHasPrivileges="['VIEW_DETAILS']">user can see the details</div>
-
-  <div *appHasPrivileges="['VIEW_DETAILS', 'VIEW_OVERVIEW', 'DO_COOL_STUFF']">
-    user can nearly do anything
-  </div>
-
-  <div *appHasPrivileges="['VIEW_OVERVIEW']; orIsAdmin: true">
-    user can see the overview or is admin
-  </div>
-
-  <div *appHasPrivileges="['VIEW_OVERVIEW', 'VIEW_DETAILS']; orIsAdmin: true">
-    user can see the details or is admin
-  </div>
-
-  <div *appHasPrivileges="[]; orIsAdmin: true">
-    user can do nothing but is admin
-  </div>
+  <input type="checkbox" [(ngModel)]="user.admin" />
 </div>

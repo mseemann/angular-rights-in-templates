@@ -1,4 +1,5 @@
 import {
+  AfterViewChecked,
   Directive,
   Input,
   OnInit,
@@ -11,7 +12,7 @@ import { User } from './user';
 @Directive({
   selector: '[appHasPrivileges]',
 })
-export class HasPrivilegesDirective implements OnInit {
+export class HasPrivilegesDirective implements OnInit, AfterViewChecked {
   constructor(
     private vcRef: ViewContainerRef,
     private tmpRef: TemplateRef<unknown>,
@@ -24,7 +25,9 @@ export class HasPrivilegesDirective implements OnInit {
   @Input()
   appHasPrivilegesOrIsAdmin = false;
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  ngAfterViewChecked() {
     this.vcRef.clear();
     if (
       this.user.hasOneOfPrivilege(this.appHasPrivileges) ||
