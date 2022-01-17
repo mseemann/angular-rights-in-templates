@@ -36,7 +36,7 @@ export class HasPrivilegesWithStoreDirective implements OnInit, OnDestroy {
       .subscribe((user) => {
         this.vcRef.clear();
         if (
-          user.hasOneOfPrivilege(this.appHasPrivilegesWithStore ?? []) ||
+          user.hasOneOfPrivileges(this.appHasPrivilegesWithStore ?? []) ||
           (this.appHasPrivilegesWithStoreOrIsAdmin && user.isAdmin())
         ) {
           this.vcRef.createEmbeddedView(this.tmpRef);

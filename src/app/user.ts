@@ -15,7 +15,7 @@ export class User {
     this.privileges = privileges;
   }
 
-  hasOneOfPrivilege(privilegesToCheck: Privilege[]) {
+  hasOneOfPrivileges(privilegesToCheck: Privilege[]) {
     return (
       privilegesToCheck.filter((value) => this.privileges.includes(value))
         .length > 0

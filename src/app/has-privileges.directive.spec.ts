@@ -1,5 +1,5 @@
 import { HasPrivilegesDirective } from './has-privileges.directive';
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { User } from './user';
 import { By } from '@angular/platform-browser';
@@ -18,6 +18,8 @@ class TestComponent {
 
 describe('HasPrivilegesDirective', () => {
   let user: User;
+  let fixture: ComponentFixture<TestComponent>;
+  let testComponent: TestComponent;
 
   beforeEach(async () => {
     user = new User([], true);
@@ -25,11 +27,11 @@ describe('HasPrivilegesDirective', () => {
       declarations: [HasPrivilegesDirective, TestComponent],
       providers: [{ provide: User, useFactory: () => user }],
     }).compileComponents();
+    fixture = TestBed.createComponent(TestComponent);
+    testComponent = fixture.componentInstance;
   });
 
   it('should include the children if the user has the privileges', () => {
-    const fixture = TestBed.createComponent(TestComponent);
-    const testComponent = fixture.componentInstance;
     testComponent.privileges = ['VIEW_OVERVIEW'];
     user.setAdmin(false);
     user.setPrivileges(['VIEW_OVERVIEW']);
@@ -41,8 +43,6 @@ describe('HasPrivilegesDirective', () => {
   });
 
   it('should not include the children if the user has not right the privileges', () => {
-    const fixture = TestBed.createComponent(TestComponent);
-    const testComponent = fixture.componentInstance;
     testComponent.privileges = [];
     user.setAdmin(false);
     user.setPrivileges([]);
@@ -54,8 +54,6 @@ describe('HasPrivilegesDirective', () => {
   });
 
   it('should include the children if the user is admin regardless his privileges', () => {
-    const fixture = TestBed.createComponent(TestComponent);
-    const testComponent = fixture.componentInstance;
     testComponent.privileges = ['VIEW_OVERVIEW'];
     testComponent.isAdmin = true;
     user.setPrivileges([]);
@@ -68,8 +66,6 @@ describe('HasPrivilegesDirective', () => {
   });
 
   it('should not throw runtime exceptions if privileges is not set.', () => {
-    const fixture = TestBed.createComponent(TestComponent);
-    const testComponent = fixture.componentInstance;
     testComponent.privileges = undefined;
     user.setAdmin(false);
     user.setPrivileges([]);

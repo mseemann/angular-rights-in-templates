@@ -27,7 +27,7 @@ export class HasPrivilegesDirective implements AfterViewChecked {
   ngAfterViewChecked() {
     this.vcRef.clear();
     if (
-      this.user.hasOneOfPrivilege(this.appHasPrivileges ?? []) ||
+      this.user.hasOneOfPrivileges(this.appHasPrivileges ?? []) ||
       (this.appHasPrivilegesOrIsAdmin && this.user.isAdmin())
     ) {
       this.vcRef.createEmbeddedView(this.tmpRef);
