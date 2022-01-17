@@ -1,2 +1,1 @@
-const privileges = ['VIEW_OVERVIEW', 'VIEW_DETAILS', 'DO_COOL_STUFF'] as const;
-export type Privilege = typeof privileges[number];
+export type Privilege = 'VIEW_OVERVIEW' | 'VIEW_DETAILS' | 'DO_COOL_STUFF';
